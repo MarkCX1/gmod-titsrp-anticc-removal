@@ -3,7 +3,9 @@ A Garry's Mod Lua script designed to automate AFK actions for the TitsRP server.
 
 # Features
 Customizable Timing: Adjust time to run program based on the EST timezone
+
 Console Log: Reads direct console logs via GarrysMod files to determine actions.
+
 Lightweight: Minimal impact on game performance.
 
 # Requirements
@@ -20,4 +22,5 @@ Alternatively, download the ZIP file and extract it..
 
 # TODO
 - Circumvent basic anti afk features
+  
 - Create check for server kicks related to server being full (etc)
