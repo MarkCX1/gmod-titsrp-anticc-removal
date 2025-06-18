@@ -4,11 +4,9 @@ import os
 import subprocess
 from colorama import init, Fore, Style
 from datetime import datetime, timedelta
-
-# Initialize colorama for cross-platform colored output
 init()
 
-# Function to get and validate GMod directory, saving to config.txt
+#config save
 def get_gmod_directory():
     config_file = "config.txt"
     gmod_dir = ""
@@ -36,7 +34,7 @@ def get_gmod_directory():
         else:
             print("Invalid directory or gmod.exe not found. Please try again.")
 
-# Function to get and set custom run time on first launch
+# first run config 
 def get_run_time():
     config_file = "config.txt"
     if os.path.exists(config_file):
@@ -44,11 +42,11 @@ def get_run_time():
             with open(config_file, 'r') as f:
                 lines = f.read().splitlines()
                 if len(lines) > 1:
-                    return int(lines[1])  # Return saved hour
+                    return int(lines[1])  # Return saved time
         except Exception:
             pass
 
-    # First launch: prompt for custom time
+    # First launch: prompt for time launch
     while True:
         try:
             hour = int(input("Enter the hour to run (0-23 in EST, e.g., 2 for 2 AM EST): "))
@@ -65,7 +63,7 @@ def get_run_time():
         except ValueError:
             print("Please enter a valid number.")
 
-# Function to terminate gmod.exe
+# terminate gmod.exe
 def terminate_gmod():
     for proc in psutil.process_iter(['name']):
         if proc.info['name'].lower() == 'gmod.exe':
@@ -76,7 +74,7 @@ def terminate_gmod():
                 pass
     return False
 
-# Function to launch GMod and connect to server
+# launch GMod and connect to server
 def launch_gmod(gmod_dir):
     try:
         subprocess.Popen([os.path.join(gmod_dir, "gmod.exe"), "+connect", "193.243.190.39:27015", "-condebug"], cwd=gmod_dir)
@@ -84,7 +82,7 @@ def launch_gmod(gmod_dir):
     except Exception as e:
         print(f"{Fore.RED}[STATUS] Failed to launch Garry's Mod: {e}{Style.RESET_ALL}")
 
-# Function to tail the log file and monitor keywords
+# log file and monitor keywords
 def tail_log(file_path, gmod_dir):
     start_time = time.time()
     file_exists = False
@@ -125,8 +123,8 @@ def tail_log(file_path, gmod_dir):
                                     os.remove(file_path)  # Clear console.log
                                 except Exception:
                                     pass
-                            time.sleep(55)  # Wait additional 55 seconds to total 60
-                            return False  # Signal to restart
+                            time.sleep(55)  # Wait additional 55 
+                            return False  # Restart
             except Exception:
                 time.sleep(1)
         else:
@@ -137,9 +135,9 @@ def tail_log(file_path, gmod_dir):
     else:
         print(f"{Fore.YELLOW}[STATUS] 2 hours elapsed without successful connection, closing Garry's Mod{Style.RESET_ALL}")
     terminate_gmod()
-    return True  # Signal to exit
+    return True  # Exit
 
-# Main loop to run at specified time EST
+# run at specified time EST
 run_hour = get_run_time()  # Get or set the run time (defaults to 2 AM if not set)
 while True:
     # Get current time in EST (fixed UTC-5 for simplicity)
