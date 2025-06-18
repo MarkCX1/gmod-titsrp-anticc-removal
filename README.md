@@ -8,6 +8,7 @@ Lightweight: Minimal impact on game performance.
 
 # Requirements
 Game: Garry's Mod
+
 Python 3.13.3 <=
 
 # Installation
