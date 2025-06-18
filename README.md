@@ -8,8 +8,7 @@ Lightweight: Minimal impact on game performance.
 
 # Requirements
 Game: Garry's Mod
-Server: Access to the TitsRP server
-File Access: Ability to place Lua scripts in the Garry's Mod directory
+Server: Access to the TitsRP server 
 
 # Installation
 Clone or Download the Repository:
