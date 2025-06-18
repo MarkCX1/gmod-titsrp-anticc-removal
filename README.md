@@ -8,7 +8,7 @@ Lightweight: Minimal impact on game performance.
 
 # Requirements
 Game: Garry's Mod
-Server: Access to the TitsRP server 
+Python 3.13.3 <=
 
 # Installation
 Clone or Download the Repository:
